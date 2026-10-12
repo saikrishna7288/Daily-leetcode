@@ -1,24 +1,39 @@
-Daily LeetCode Log — October 12, 2026
-Today's practice focused on Dynamic Programming (DP) with recursion and memoization.
-Problems Solved
-1. LeetCode 63 — Unique Paths II
-2. LeetCode 931 — Minimum Falling Path Sum
-1. LeetCode 63 — Unique Paths II
-Topic: Dynamic Programming, Recursion, Memoization
-Difficulty: Medium
-Problem Description
-Given an m x n grid where 1 represents an obstacle and 0 represents an empty cell, return the number of unique paths from the top-left cell to the bottom-right cell. You may move only right or down, and you cannot move through an obstacle.
-Approach
+# Daily LeetCode Log — October 12, 2026
+
+Today's practice focused on **Dynamic Programming (DP)** with recursion and memoization.
+
+## Problems Solved
+
+1. [LeetCode 63 — Unique Paths II](https://leetcode.com/problems/unique-paths-ii/)
+2. [LeetCode 931 — Minimum Falling Path Sum](https://leetcode.com/problems/minimum-falling-path-sum/)
+
+---
+
+## 1. LeetCode 63 — Unique Paths II
+
+**Topic:** Dynamic Programming, Recursion, Memoization  
+**Difficulty:** Medium
+
+### Problem Description
+
+Given an `m x n` grid where `1` represents an obstacle and `0` represents an empty cell, return the number of unique paths from the top-left cell to the bottom-right cell. You may move only **right** or **down**, and you cannot move through an obstacle.
+
+### Approach
+
 Use recursion with memoization to count valid paths from each cell to the destination.
-Steps
-1. If the starting cell is an obstacle, return 0.
-2. If the current row or column is outside the grid, return 0.
-3. If the destination is reached, return 1 if it is open; otherwise, return 0.
-4. If dp[i][j] already contains a result, return it.
+
+**Steps**
+1. If the starting cell is an obstacle, return `0`.
+2. If the current row or column is outside the grid, return `0`.
+3. If the destination is reached, return `1` if it is open; otherwise, return `0`.
+4. If `dp[i][j]` already contains a result, return it.
 5. Explore the right cell only if it is inside the grid and is not an obstacle.
 6. Explore the cell below only if it is inside the grid and is not an obstacle.
-7. Add both path counts, store the result in dp[i][j], and return it.
-Code (Java)
+7. Add both path counts, store the result in `dp[i][j]`, and return it.
+
+### Code (Java)
+
+```java
 class Solution {
     int dp[][];
 
@@ -51,26 +66,41 @@ class Solution {
         return find(i, j, ei, ej, obstacleGrid);
     }
 }
-Complexity Analysis
-- Time: O(m × n) — each cell's result is computed at most once.
-- Space: O(m × n) for the memoization table, plus recursion stack space.
-2. LeetCode 931 — Minimum Falling Path Sum
-Topic: Dynamic Programming, Recursion, Memoization
-Difficulty: Medium
-Problem Description
-Given an n x n integer matrix, find the minimum sum of a falling path. A falling path starts at any cell in the first row and, for each next row, moves directly down, diagonally down-left, or diagonally down-right.
-Approach
+```
+
+### Complexity Analysis
+
+- **Time:** `O(m × n)` — each cell's result is computed at most once.
+- **Space:** `O(m × n)` for the memoization table, plus recursion stack space.
+
+---
+
+## 2. LeetCode 931 — Minimum Falling Path Sum
+
+**Topic:** Dynamic Programming, Recursion, Memoization  
+**Difficulty:** Medium
+
+### Problem Description
+
+Given an `n x n` integer matrix, find the minimum sum of a falling path. A falling path starts at any cell in the first row and, for each next row, moves directly down, diagonally down-left, or diagonally down-right.
+
+### Approach
+
 Use recursion with memoization to calculate the minimum falling path sum starting from each possible cell in the first row.
-Steps
+
+**Steps**
 1. Try every column in the first row as a starting point.
-2. If the row or column is outside the matrix, return Integer.MAX_VALUE to mark an invalid move.
+2. If the row or column is outside the matrix, return `Integer.MAX_VALUE` to mark an invalid move.
 3. If the current cell is in the last row, return its value.
-4. If the result is already stored in dp[row][col], return it.
-5. Recursively calculate the three possible moves: down, down-left, and down-right.
+4. If the result is already stored in `dp[row][col]`, return it.
+5. Recursively calculate the three possible moves: **down**, **down-left**, and **down-right**.
 6. Choose the minimum of those results and add the current cell's value.
-7. Store the result in dp[row][col].
+7. Store the result in `dp[row][col]`.
 8. Return the minimum result across all starting columns.
-Code (Java)
+
+### Code (Java)
+
+```java
 class Solution {
     int dp[][];
 
@@ -106,14 +136,27 @@ class Solution {
         return ans;
     }
 }
-Complexity Analysis
-- Time: O(n²) — each cell's result is computed at most once.
-- Space: O(n²) for the memoization table, plus recursion stack space.
-Implementation Note
-Your submitted approach is preserved above. One edge case to watch: adding a cell value to Integer.MAX_VALUE from an invalid child can overflow an int. A safer version checks whether the minimum child result is Integer.MAX_VALUE before adding the current value, or uses a suitably small infinity value.
-Key Takeaway
-Both problems use top-down Dynamic Programming:
-- LeetCode 63: Count valid paths while avoiding blocked cells.
-- LeetCode 931: Find the minimum path sum while considering three possible moves to the next row.
+```
+
+### Complexity Analysis
+
+- **Time:** `O(n²)` — each cell's result is computed at most once.
+- **Space:** `O(n²)` for the memoization table, plus recursion stack space.
+
+### Implementation Note
+
+Your submitted approach is preserved above. One edge case to watch: adding a cell value to `Integer.MAX_VALUE` from an invalid child can overflow an `int`. A safer version checks whether the minimum child result is `Integer.MAX_VALUE` before adding the current value, or uses a suitably small infinity value.
+
+---
+
+## Key Takeaway
+
+Both problems use **top-down Dynamic Programming**:
+
+- **LeetCode 63:** Count valid paths while avoiding blocked cells.
+- **LeetCode 931:** Find the minimum path sum while considering three possible moves to the next row.
+
 The shared pattern is to define a state, handle base cases, explore valid next moves, and memoize results to avoid repeated calculations.
-Java note: Add import java.util.Arrays; (or import java.util.*;) at the top if compiling these snippets outside LeetCode.
+
+> Java note: Add `import java.util.Arrays;` (or `import java.util.*;`) at the top if compiling these snippets outside LeetCode.
+git 
